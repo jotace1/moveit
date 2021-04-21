@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/jotace1/moveit">
-    <img src="favicon.png" alt="Logo"  height="100">
+    <img src="public/favicon.png" alt="Logo"  height="100">
   </a>
 
   <h3 align="center">MoveIt</h3>
