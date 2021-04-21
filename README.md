@@ -47,7 +47,9 @@
 ## :mag_right: About The Project
 
 <p align="center">
-<img src="assets\print.png" alt="Logo" width="350" height="550">
+<img src="public\print1.png" alt="print1" width="350" height="550">
+<img src="public\print2.png" alt="print2" width="350" height="550">
+<img src="public\print3.png" alt="print3" width="350" height="550">
 </p>
 
 ### 💻 Built With
