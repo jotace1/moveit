@@ -47,9 +47,9 @@
 ## :mag_right: About The Project
 
 <p align="center">
-<img src="public\print1.PNG" alt="print1" width="350" height="350">
-<img src="public\print2.PNG" alt="print2" width="350" height="350">
-<img src="public\print3.PNG" alt="print3" width="350" height="350">
+<img src="public\print3.PNG" alt="print3" width="350" height="250">
+<img src="public\print1.PNG" alt="print1" width="350" height="250">
+<img src="public\print2.PNG" alt="print2" width="350" height="250">
 </p>
 
 ### 💻 Built With
