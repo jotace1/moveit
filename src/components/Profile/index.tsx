@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ChallengesContext } from "../../contexts/ChallengesContext";
-
+import { useSession } from "next-auth/client";
 import {
   ProfileContainer,
   ProfileImg,
@@ -10,13 +10,16 @@ import {
 } from "./styles";
 
 const Profile: React.FC = () => {
+  const [session] = useSession();
   const { level } = useContext(ChallengesContext);
+
+  const user = session ? session.user : null;
 
   return (
     <ProfileContainer>
-      <ProfileImg src="https://github.com/jotace1.png" alt="João Carlos" />
+      <ProfileImg src={`${user?.image}`} alt="João Carlos" />
       <ProfileInfoBox>
-        <ProfileName>João Carlos</ProfileName>
+        <ProfileName>{user?.name}</ProfileName>
         <ProfileLevel>
           <img src="icons/level.svg" alt="Level.svg" />
           Level {level}

@@ -1,71 +1,54 @@
-import ExperienceBar from "../components/ExperienceBar";
-import CompletedChallenges from "../components/CompletedChallenges";
-import Profile from "../components/Profile";
-import CountDown from "../components/CountDown";
-import ChallengeBox from "../components/ChallengeBox";
-import { ChallengesProvider } from "../contexts/ChallengesContext";
-import { CountdownProvider } from "../contexts/CountdownContext";
+import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { getSession, signIn, signOut, useSession } from 'next-auth/client'
 import {
-  ChallengeBoxDiv,
-  Container,
-  ProfileBox,
-} from "../styles/dashboardstyle";
-
-import Head from "next/head";
-import { GetServerSideProps } from "next";
-
+    Container,
+    GithubContainer,
+    GithubText,
+    LoginBox,
+    StyledButton,
+    StyledInput,
+    StyledInputBox,
+    WellcomeText,
+} from '../styles/homestyle'
 interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
+    level: number
+    currentExperience: number
+    challengesCompleted: number
 }
 
 export default function Home(props: HomeProps) {
-  return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <CountdownProvider>
-        <div
-          style={{
-            height: "100vh",
-            maxWidth: "992px",
-            margin: "0 auto",
-            padding: "2.5rem 2rem",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <ExperienceBar />
+    const [session] = useSession()
+    const [inputValue, setInputValue] = useState('')
+    const router = useRouter()
+    if (session?.user) {
+        router.push('/dashboard')
+    }
+    return (
+        <Container>
+            <img src="icon-full.svg" />
+            <LoginBox>
+                <img src="logo-full-white.svg" alt="Moveit" />
+                <WellcomeText>Bem-vindo</WellcomeText>
+                <GithubContainer>
+                    <img src="icons/git.svg" />
+                    <GithubText>
+                        Faça login com seu Github para começar
+                    </GithubText>
+                </GithubContainer>
 
-          <Container>
-            <ProfileBox>
-              <Profile />
-              <CompletedChallenges />
-              <CountDown />
-            </ProfileBox>
-            <ChallengeBoxDiv>
-              <ChallengeBox />
-            </ChallengeBoxDiv>
-          </Container>
-          <Head>
-            <title>Início | move.it</title>
-          </Head>
-        </div>
-      </CountdownProvider>
-    </ChallengesProvider>
-  );
+                <StyledInputBox>
+                    <StyledButton
+                        onClick={() => {
+                            signIn('github')
+                        }}
+                    >
+                        <strong>Entrar</strong>
+                        <img src="icons/arrow-right.svg" />
+                    </StyledButton>
+                </StyledInputBox>
+            </LoginBox>
+        </Container>
+    )
 }
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    },
-  };
-};
