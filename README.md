@@ -19,7 +19,7 @@
     <a href="https://github.com/jotace1/moveit"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/jotace1/moveit">View Demo</a>
+    <a href="https://moveit2.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/jotace1/moveit/issues">Report Bug</a>
     ·
